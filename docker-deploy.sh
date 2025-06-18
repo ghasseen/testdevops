@@ -14,7 +14,7 @@ APP_PORT=3000                                              # Port HTTP de l'appl
 
 #  Nettoyer s'il y a déjà un dossier cloné
 if [ -d "$APP_DIR" ]; then
-  echo "🧹 Suppression de l'ancien dossier $APP_DIR..."
+  echo " Suppression de l'ancien dossier $APP_DIR..."
   rm -rf "$APP_DIR"
 fi
 
@@ -24,7 +24,7 @@ git clone "$REPO_URL" "$APP_DIR"
 cd "$APP_DIR" || { echo " Le dossier n'existe pas"; exit 1; }
 
 #  Construire l’image Docker locale
-echo "🔧 Construction de l’image Docker : $DOCKER_IMAGE"
+echo " Construction de l’image Docker : $DOCKER_IMAGE"
 docker build -t "$DOCKER_IMAGE" .
 
 #  Pusher l’image sur Docker Hub
