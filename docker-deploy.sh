@@ -25,6 +25,7 @@ cd "$APP_DIR" || { echo " Le dossier n'existe pas"; exit 1; }
 
 #  Construire l’image Docker locale
 echo " Construction de l’image Docker : $DOCKER_IMAGE"
+export DOCKER_BUILDKIT=1
 docker build -t "$DOCKER_IMAGE" .
 
 #  Pusher l’image sur Docker Hub
