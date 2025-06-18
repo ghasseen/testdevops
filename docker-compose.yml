@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mongo-devops:
+    container_name: mongoc
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devopsghassen
+      MONGO_INITDB_ROOT_PASSWORD: S3cur3Pass!
+      MONGO_INITDB_DATABASE: appdb2025
+    ports:
+      - "27017:27017"
+    volumes:
+      - /srv/databases/node/data:/data/db
+
+  node-backend:
+    container_name: my-node-app
+    build: .
+    restart: always
+    environment:
+      - DATABASE=mongodb://devopsghassen:S3cur3Pass!@mongo-devops:27017/appdb2025
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo-devops
